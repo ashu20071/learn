@@ -5,7 +5,7 @@ public class magicSquare {
         int[][] magicSq=new int[][]{{4,8,2},{4,5,7},{6,1,6}};
 
         for(int row=0; row<magicSq.length; row++){
-            int sum1=0; int diff=15;
+            int sum1=0;
             for(int col=0; col<magicSq.length; col++){
 
                 sum1 += magicSq[row][col];
