@@ -9,6 +9,8 @@ public class magicSquare {
             for(int col=0; col<magicSq.length; col++){
 
                 sum1 += magicSq[row][col];
+                sum1 += magicSq[row][col];
+
 
 
             }
@@ -40,6 +42,8 @@ public class magicSquare {
                 System.out.print(magicSq[row][col]+" ");
 
             }
+
+
             System.out.println();
         }
 
