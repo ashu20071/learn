@@ -9,9 +9,6 @@ public class magicSquare {
             for(int col=0; col<magicSq.length; col++){
 
                 sum1 += magicSq[row][col];
-                sum1 += magicSq[row][col];
-
-
 
             }
             if(sum1 != 15){
