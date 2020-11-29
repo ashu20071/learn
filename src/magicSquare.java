@@ -1,48 +1,42 @@
+import java.util.ArrayList;
+
 public class magicSquare {
 
     public static void main(String[] args){
 
         int[][] magicSq=new int[][]{{4,8,2},{4,5,7},{6,1,6}};
 
-        for(int row=0; row<magicSq.length; row++){
-            int sum1=0;
-            for(int col=0; col<magicSq.length; col++){
+        int[][][] possValues=new int[][][]{{{8,3,4},{1,5,9},{6,7,2}},
+                                            {{8,1,6},{3,5,7},{4,9,2}},
+                                            {{4,3,8},{9,5,1},{2,7,6}},
+                                            {{6,1,8},{7,5,3},{2,9,4}},
+                                            {{2,9,4},{7,5,3},{6,1,8}},
+                                            {{6,7,2},{1,5,9},{8,3,4}},
+                                            {{4,9,2},{3,5,7},{8,1,6}},
+                                            {{2,7,6},{9,5,1},{4,3,8}}};
 
-                sum1 += magicSq[row][col];
-
-            }
-            if(sum1 != 15){
-                //magicSq[row][2]=magicSq[row][2]+(diff-sum);
-
-            }
-            System.out.print("sum1="+sum1+" ");
-            int i=1;
-            System.out.println();
-        }
-        for(int row=0; row<magicSq.length; row++){
-            int i=0;
-            while (i<=3){
-                int sum2=0;
-                for(int col=0; col<i; col++){
-                    sum2 += magicSq[row][col];
+        int min=100;
+        for (int i=0; i<8; i++){
+            int diff=0;
+            for(int row=0; row<magicSq.length; row++){
+                for(int col=0; col<magicSq.length; col++){
+                     diff += Math.abs(magicSq[row][col]-possValues[i][row][col]);
                 }
-                i++;
-                System.out.print(sum2+" ");
             }
-            System.out.println();
+            if(diff < min){
+                min=diff;
+            }
 
         }
 
-        System.out.println("\n");
-        for(int row=0; row<magicSq.length; row++){
-            for(int col=0; col<magicSq[row].length; col++){
-                System.out.print(magicSq[row][col]+" ");
+        for (int[] ints : magicSq) {
+            for (int anInt : ints) {
+                System.out.print(anInt + " ");
 
             }
-
-
             System.out.println();
         }
+        System.out.println("min="+min);
 
     }
 }
