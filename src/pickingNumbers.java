@@ -11,7 +11,7 @@ public class pickingNumbers {
         Arrays.sort(a);
 
         for (int i=0; i<a.length; i++){
-            for (int j=i+1; j<a.length-1; j++){
+            for (int j=i+1; j<a.length; j++){
 
                 if (a[j] == a[i]+1 || a[j] == a[i]){
                     counter++;
