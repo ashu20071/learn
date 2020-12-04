@@ -7,6 +7,7 @@ public class OpenLock {
         Queue<String> queue = new LinkedList<>();
         int steps = 0;
         String curr = "0000";
+        char[] tar = target.toCharArray();
         queue.add(curr);
 
         while (!queue.isEmpty()){
@@ -17,7 +18,8 @@ public class OpenLock {
                     return steps;
                 }
                 else {
-                    
+                    char[] ch = curr.toCharArray();
+
                 }
 
             }
