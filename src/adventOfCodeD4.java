@@ -96,8 +96,6 @@ public class adventOfCodeD4 {
                                 }
                             }
 
-
-
                         }
                     }
 
