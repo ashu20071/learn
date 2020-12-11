@@ -37,6 +37,8 @@ public class adventOfCodeD7 {
                 }
             }
             queue.poll();
+            Stack<Integer> stack = new Stack<>();
+
             numbers.poll();
         }
 
