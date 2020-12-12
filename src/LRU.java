@@ -6,6 +6,7 @@ import java.util.*;
 //todo: Ashu implement custom HashMap
 //todo: Ashuimplement excepition handeling for duplicate null empty invalid scenerios
 //todo: create junit testcase
+//todo: latchara saaf karo
 
 public class LRU {
     int size;
@@ -20,8 +21,7 @@ public class LRU {
     }
 
     //get value for requested key
-    public int get(int key)
-    {
+    public int get(int key) {
         if (map.containsKey(key)) {
             return map.get(key);
         }
@@ -30,15 +30,13 @@ public class LRU {
     }
 
     //set new/existing value as recently used
-    public void set(int key, int value)
-    {
+    public void set(int key, int value) {
 
         if (map.containsKey(key)) {
             System.out.println("Error: Key already present");
-        }
-        else {
+        } else {
 
-            if (queue.contains(value)){
+            if (queue.contains(value)) {
                 //test
                 mapIterator(value);
 
@@ -51,21 +49,20 @@ public class LRU {
                 queue.removeLast();
             }
             queue.offerFirst(value);
-            map.put(key,value);
+            map.put(key, value);
         }
     }
 
     private void mapIterator(int value) {
         Set<Map.Entry<Integer, Integer>> entries = map.entrySet();
         Integer tempVal = null;
-        for(Map.Entry<Integer, Integer>entry: entries )
-        {
-            if(entry.getValue().equals(value)){
+        for (Map.Entry<Integer, Integer> entry : entries) {
+            if (entry.getValue().equals(value)) {
                 tempVal = entry.getKey();
-                System.out.println( entry.getKey());
+                System.out.println(entry.getKey());
             }
         }
-        if (null != tempVal){
+        if (null != tempVal) {
             map.remove(tempVal);
         }
     }
@@ -81,21 +78,21 @@ public class LRU {
         while (!(inp = reader.readLine()).equals("ok")) {
             String[] s = inp.split(" ");
             lru.set(Integer.parseInt(s[0]), Integer.parseInt(s[1]));
-            System.out.println("Current cache = "+lru.queue);
-            System.out.println("Current Map= "+lru.map);
+            System.out.println("Current cache = " + lru.queue);
+            System.out.println("Current Map= " + lru.map);
         }
     }
 
     public static void main(String[] args) throws IOException {
         getInput();
-     Map<String,String> map =  new HashMap<String,String>();
-     map.put("a","value A");
-     map.put("b","value B");
-     map.put("c","value C");
-     map.put("d","value D");
-    for (Map.Entry<String,String> entry : map.entrySet()){
-        System.out.println(entry.getKey());
-        System.out.println(entry.getValue());
-    }
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("a", "value A");
+        map.put("b", "value B");
+        map.put("c", "value C");
+        map.put("d", "value D");
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+        }
     }
 }
