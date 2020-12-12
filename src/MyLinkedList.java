@@ -60,12 +60,12 @@ class MyLinkedList {
         for (int i=0; i<index-1 && temp.next != null; i++) {
             temp = temp.next;
         }
-            Node t = temp.next;
-            Node newNode = new Node();
-            newNode.val = val;
-            temp.next = newNode;
-            newNode.next = t;
-            length++;
+        Node t = temp.next;
+        Node newNode = new Node();
+        newNode.val = val;
+        temp.next = newNode;
+        newNode.next = t;
+        length++;
     }
 
     /** Delete the index-th node in the linked list, if the index is valid. */
@@ -81,7 +81,7 @@ class MyLinkedList {
             }
             if (temp.next != null)
                 temp.next = temp.next.next;
-                length--;
+            length--;
         }
     }
 

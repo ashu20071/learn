@@ -1,11 +1,4 @@
 public class sortedSquares {
-    public static void main(String[] args){
-        int[] A=new int[]{-4,-5,-3,10,-12};
-        A=sortedSquare(A);
-        for(int a : A){
-            System.out.print(a+" ");
-        }
-    }
     public static int[] sortedSquare(int[] A) {
         for(int i=0; i<A.length; i++){
             A[i]=A[i]*A[i];
@@ -24,5 +17,12 @@ public class sortedSquares {
             }
         }
         return A;
+    }
+    public static void main(String[] args){
+        int[] A=new int[]{-4,-5,-3,10,-12};
+        A=sortedSquare(A);
+        for(int a : A){
+            System.out.print(a+" ");
+        }
     }
 }

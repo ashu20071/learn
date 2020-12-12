@@ -1,5 +1,8 @@
 public class Heights {
 
+
+    //create a sort method
+
     public static void main(String[] args) {
 
         int[] heights=new int[]{1,1,4,2,1,3};

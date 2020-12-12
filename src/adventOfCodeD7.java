@@ -2,7 +2,6 @@ import java.util.*;
 
 public class adventOfCodeD7 {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
         List<String> strings = new ArrayList<>();
         Queue<String> queue = new LinkedList<>();
@@ -10,7 +9,6 @@ public class adventOfCodeD7 {
         String s="";    int sum = 0;
         queue.add("shiny gold bags ");
         numbers.add(1);
-
         while (!(s = scanner.nextLine()).equals("done")){
             strings.add(s);
         }
