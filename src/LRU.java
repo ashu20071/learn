@@ -40,29 +40,33 @@ public class LRU {
 
             if (queue.contains(value)){
                 //test
-                Set<Map.Entry<Integer, Integer>> entries = map.entrySet();
-                Integer tempVal = null;
-
-                for(Map.Entry<Integer, Integer>entry: entries )
-                {
-                    if(entry.getValue().equals(value)){
-                        tempVal = entry.getKey();
-                        System.out.println( entry.getKey());
-                    }
-                }
-                if (null != tempVal){
-                    map.remove(tempVal);
-                }
+                mapIterator(value);
 
 
                 //tesr
                 queue.remove(value);
             }
             if (queue.size() >= size) {
+                mapIterator(queue.getLast());
                 queue.removeLast();
             }
             queue.offerFirst(value);
             map.put(key,value);
+        }
+    }
+
+    private void mapIterator(int value) {
+        Set<Map.Entry<Integer, Integer>> entries = map.entrySet();
+        Integer tempVal = null;
+        for(Map.Entry<Integer, Integer>entry: entries )
+        {
+            if(entry.getValue().equals(value)){
+                tempVal = entry.getKey();
+                System.out.println( entry.getKey());
+            }
+        }
+        if (null != tempVal){
+            map.remove(tempVal);
         }
     }
 
