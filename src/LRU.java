@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 //todo: Ashu implement custom queue
 //todo: Ashu implement custom HashMap
-//todo: Ashu implement excepition handeling for duplicate null empty invalid scenerios
+//todo: Ashu implement exception handling for duplicate null empty invalid scenarios
 //todo: create junit testcase
 //todo: katchara saaf karo
 
@@ -31,21 +31,17 @@ public class LRU {
 
     //set new/existing value as recently used
     public void set(int key, int value) {
-
-        if (map.containsKey(key)) {
-            System.out.println("Error: Key already present");
-        } else {
-            if (queue.contains(value)) {
-                mapIterator(value);
-                queue.remove(value);
-            }
-            if (queue.size() >= size) {
-                mapIterator(queue.getLast());
-                queue.removeLast();
-            }
-            queue.addFirst(value);
-            map.put(key,value);
+        map.remove(key);
+        if (queue.contains(value)) {
+            mapIterator(value);
+            queue.remove(value);
         }
+        if (queue.size() >= size) {
+            mapIterator(queue.getLast());
+            queue.removeLast();
+        }
+        queue.addFirst(value);
+        map.put(key,value);
     }
 
     //Find key from given value & delete from map
