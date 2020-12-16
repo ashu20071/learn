@@ -6,7 +6,6 @@ import java.util.*;
 //todo: Ashu implement custom HashMap
 //todo: Ashu implement exception handling for duplicate null empty invalid scenarios
 //todo: create junit testcase
-//todo: katchara saaf karo
 
 public class LRU {
     int size;
@@ -22,7 +21,11 @@ public class LRU {
 
     //get value for requested key
     public int get(int key) {
-        if (map.containsKey(key)) {
+        if (map.get(key) != null) {
+            if (!queue.peekFirst().equals(map.get(key))) {
+                queue.remove(map.get(key));
+                queue.addFirst(map.get(key));
+            }
             return map.get(key);
         }
         //key not present in cache
@@ -31,7 +34,10 @@ public class LRU {
 
     //set new/existing value as recently used
     public void set(int key, int value) {
-        map.remove(key);
+        if (map.get(key) != null) {
+            queue.remove(map.get(key));
+            map.remove(key);
+        }
         if (queue.contains(value)) {
             mapIterator(value);
             queue.remove(value);
@@ -71,10 +77,20 @@ public class LRU {
         String inp;
         while (!(inp = reader.readLine()).equals("ok")) {
             String[] s = inp.split(" ");
-            //calling LRU set method
-            lru.set(Integer.parseInt(s[0]), Integer.parseInt(s[1]));
-            System.out.println("Current cache = " + lru.queue);
-            System.out.println("Current Map= " + lru.map);
+            if (s[0].equals("GET")) {
+                //calling LRU get method
+                System.out.println(Integer.parseInt(s[1])+" = "+lru.get(Integer.parseInt(s[1])));
+                System.out.println("Current cache = " + lru.queue);
+                System.out.println("Current Map = " + lru.map);
+            }
+            else {
+                //calling LRU set method
+                String[] s1 = inp.split(" ");
+                lru.set(Integer.parseInt(s1[0]), Integer.parseInt(s1[1]));
+                System.out.println("Current cache = " + lru.queue);
+                System.out.println("Current Map = " + lru.map);
+            }
+            System.out.println("Cache= "+lru.queue);
         }
     }
 
