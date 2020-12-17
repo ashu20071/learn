@@ -1,5 +1,8 @@
 public class Node {
     int val;
     Node next;
-    public Node() {}
+    Node(int d){
+        this.val=d;
+        next=null;
+    }
 }

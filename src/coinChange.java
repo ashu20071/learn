@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class coinChange {
     static long count(int[] S, int m, int n) {
-        /*
+        /* first solution using recursion (overlapping sub-problems)
         //if n is 0, only 1 solution; take no coins
         if (n == 0)
             return 1;
@@ -17,6 +17,9 @@ public class coinChange {
 
         return count(S, m-1, n) + count(S, m, n-S[m-1]);
     }*/
+
+        //optimal solution using dynamic programming (optimal substructure)
+
         long[] table = new long[n+1];
         Arrays.fill(table, 0);          //initialize all table values as 0
 

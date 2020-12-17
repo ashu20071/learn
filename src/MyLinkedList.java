@@ -3,7 +3,7 @@ class MyLinkedList {
     int length;
     /** Initialize your data structure here. */
     public MyLinkedList() {
-        head = new Node();
+        head = new Node(8);
         head = null;
         length = 0;
     }
@@ -20,7 +20,7 @@ class MyLinkedList {
 
     /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
     public void addAtHead(int val) {
-        Node value = new Node();
+        Node value = new Node(val);
         value.val = val;
         value.next = head;
         head = value;
@@ -31,8 +31,7 @@ class MyLinkedList {
     public void addAtTail(int val) {
         Node temp = head;
         if (temp == null) {
-            Node value = new Node();
-            value.val = val;
+            Node value = new Node(val);
             head = value;
             length++;
         }
@@ -40,8 +39,7 @@ class MyLinkedList {
             while (temp.next != null) {
                 temp = temp.next;
             }
-            Node value = new Node();
-            value.val = val;
+            Node value = new Node(val);
             temp.next = value;
             value.next = null;
             length++;
@@ -61,8 +59,7 @@ class MyLinkedList {
             temp = temp.next;
         }
         Node t = temp.next;
-        Node newNode = new Node();
-        newNode.val = val;
+        Node newNode = new Node(val);
         temp.next = newNode;
         newNode.next = t;
         length++;
