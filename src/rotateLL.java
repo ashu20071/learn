@@ -15,10 +15,30 @@ public class rotateLL {
         return head;
     }
 
+    Node pairWiseSwap(Node head) {
+        Node curr = head;
+        Node prevE;
+        Node first = null;
+        Node nextE;
+        while (curr != null && curr.next != null) {
+            nextE = curr.next.next;
+            prevE = curr.next;
+            if (curr == head)
+                head = prevE;
+            else
+                first.next = prevE;
+            curr.next = nextE;
+            prevE.next = curr;
+            first = curr;
+            curr = nextE;
+        }
+        return head;
+    }
+
     static Node createList() {
         Node head = new Node(1);
         Node curr = head;
-        for (int i = 2; i <= 2; i++) {
+        for (int i = 2; i <= 10; i++) {
             curr.next = new Node(i);
             curr = curr.next;
         }
@@ -39,8 +59,8 @@ public class rotateLL {
         Node head = createList();
         printList(head);
         rotateLL rotateLL = new rotateLL();
-        head = rotateLL.rotate(head, 2);
-        System.out.print("\nRotated list = ");
+        head = rotateLL.pairWiseSwap(head);
+        System.out.print("\nPairWiseSwapped ");
         printList(head);
     }
 }
