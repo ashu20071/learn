@@ -1,5 +1,5 @@
 public class rotateLL {
-    public Node rotate(Node head, int k) {
+    Node rotate(Node head, int k) {
         Node curr = head;
         while (curr.next != null) {
             curr = curr.next;
@@ -35,12 +35,44 @@ public class rotateLL {
         return head;
     }
 
+    Node segregate(Node head)
+    {
+        Node zeroD = new Node(0); Node oneD = new Node(0); Node twoD = new Node(0);
+        Node zero = zeroD;
+        Node one = oneD;
+        Node two = twoD;
+        Node curr = head;
+        while (curr != null) {
+            if (curr.val == 0) {
+                zero.next = curr;
+                zero = zero.next;
+            }
+            else if (curr.val == 1) {
+                one.next = curr;
+                one = one.next;
+            }
+            else {
+                two.next = curr;
+                two = two.next;
+            }
+            curr = curr.next;
+        }
+        if (oneD.next != null)
+            zero.next = oneD.next;
+        else
+            zero.next = twoD.next;
+        one.next = twoD.next;
+        two.next = null;
+        head = zeroD.next;
+        return head;
+    }
+
     static Node createList() {
         Node head = new Node(1);
         Node curr = head;
         for (int i = 2; i <= 10; i++) {
-            curr.next = new Node(i);
-            curr = curr.next;
+        curr.next = new Node(i);
+        curr = curr.next;
         }
         return head;
     }
@@ -59,8 +91,8 @@ public class rotateLL {
         Node head = createList();
         printList(head);
         rotateLL rotateLL = new rotateLL();
-        head = rotateLL.pairWiseSwap(head);
-        System.out.print("\nPairWiseSwapped ");
+        head = rotateLL.segregate(head);
+        System.out.print("\nSegregated ");
         printList(head);
     }
 }
