@@ -1,4 +1,4 @@
-public class rotateLL {
+public class linkedListFunctions {
     Node rotate(Node head, int k) {
         Node curr = head;
         while (curr.next != null) {
@@ -90,7 +90,7 @@ public class rotateLL {
     public static void main(String[] args) {
         Node head = createList();
         printList(head);
-        rotateLL rotateLL = new rotateLL();
+        linkedListFunctions rotateLL = new linkedListFunctions();
         head = rotateLL.segregate(head);
         System.out.print("\nSegregated ");
         printList(head);
