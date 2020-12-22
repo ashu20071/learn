@@ -77,7 +77,7 @@ public class linkedListFunctions {
         return head;
     }
 
-    static void printList(Node head) {
+    void printList(Node head) {
         Node curr = head;
         System.out.print("List = [ ");
         while (curr != null) {
@@ -89,10 +89,11 @@ public class linkedListFunctions {
 
     public static void main(String[] args) {
         Node head = createList();
-        printList(head);
+        linkedListFunctions list = new linkedListFunctions();
+        list.printList(head);
         linkedListFunctions rotateLL = new linkedListFunctions();
         head = rotateLL.segregate(head);
         System.out.print("\nSegregated ");
-        printList(head);
+        list.printList(head);
     }
 }
