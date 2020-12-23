@@ -20,9 +20,9 @@ public class sumTree {
 
     public static void main(String[] args) {
         buildTree tree = new buildTree();
-        TreeNode root =  tree.build("3 1 2");
+        TreeNode root =  tree.build("nn");
         sumTree sumTree = new sumTree();
         System.out.println(sumTree.isSumTree(root));
+        System.out.println("Please enter integer values");
     }
-
 }

@@ -1,4 +1,81 @@
 public class sortMethods {
+    static void quickSort(int[] arr, int low, int high) {
+        if (low >= high)
+            return;
+        int pivotIndex = partition(arr, low, high);
+        quickSort(arr, low, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, high);
+    }
+
+    static int partition(int[] arr, int low, int high) {
+        int pivot = arr[low];
+        int l = low;
+        int h = high;
+        while (l < h) {
+            while (arr[l] <= pivot && l < h)
+                l++;
+            while (arr[h] > pivot)
+                h--;
+            if (l < h)
+                swap(arr, l, h);
+        }
+        swap(arr, low, h);
+        return h;
+    }
+
+    static void mergeSort(int[] arr) {
+        if (arr.length == 1)
+            return;
+        int mid = arr.length / 2 + arr.length % 2;
+        int[] firstHalf = new int[mid];
+        int[] secondHalf = new int[arr.length - mid];
+        split(arr, firstHalf, secondHalf);
+
+        mergeSort(firstHalf);
+        mergeSort(secondHalf);
+
+        merge(arr, firstHalf, secondHalf);
+    }
+
+    static void split(int[] arr, int[] firstHalf, int[] secondHalf) {
+        int index = 0;
+        int secondHalfStartIndex = firstHalf.length;
+        for (int i : arr) {
+            if (index < firstHalf.length)
+                firstHalf[index] = arr[index];
+            else
+                secondHalf[index-secondHalfStartIndex] = arr[index];
+            index++;
+        }
+    }
+
+    static void merge(int[] arr, int[] firstHalf, int[] secondHalf) {
+        int mergeIndex = 0;
+        int firstHalfIndex = 0;
+        int secondHalfIndex = 0;
+        while (firstHalfIndex < firstHalf.length && secondHalfIndex < secondHalf.length) {
+            if (firstHalf[firstHalfIndex] < secondHalf[secondHalfIndex]) {
+                arr[mergeIndex] = firstHalf[firstHalfIndex];
+                firstHalfIndex++;
+            }
+            else {
+                arr[mergeIndex] = secondHalf[secondHalfIndex];
+                secondHalfIndex++;
+            }
+            mergeIndex++;
+        }
+
+        if (firstHalfIndex < firstHalf.length) {
+            while (mergeIndex < arr.length)
+                arr[mergeIndex++] = firstHalf[firstHalfIndex++];
+        }
+        if (secondHalfIndex < secondHalf.length) {
+            while (mergeIndex < arr.length)
+                arr[mergeIndex++] = secondHalf[secondHalfIndex++];
+
+        }
+    }
+
     static void insertion(int[] arr) {
         for (int i=0; i<arr.length-1; i++) {
             for (int j=i+1; j>0; j--) {
@@ -78,8 +155,8 @@ public class sortMethods {
     public static void main(String[] args) {
         int[] arr = new int[10];
         getList(arr);
-        shellSort(arr);
-        System.out.print("\nSorted List (shell sort) = ");
+        quickSort(arr, 0, arr.length - 1);
+        System.out.print("\nSorted List (quick sort) = ");
         printList(arr);
     }
 }
