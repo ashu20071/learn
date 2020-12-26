@@ -3,7 +3,7 @@ package LinkedList;
 public class Node {
     int val;
     Node next;
-    Node(int d){
+    public Node(int d){
         this.val=d;
         next=null;
     }
