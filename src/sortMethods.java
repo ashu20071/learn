@@ -1,4 +1,55 @@
 public class sortMethods {
+    static void heapSort(int[] arr) {
+        heapify(arr, arr.length - 1);
+        int endIndex = arr.length - 1;
+        while (endIndex > 0) {
+            swap(arr, 0, endIndex);
+            endIndex--;
+            percolateDown(arr, 0, endIndex);
+        }
+    }
+
+    static void heapify(int[] arr, int endIndex) {
+        int index = getParentIndex(endIndex, endIndex);
+        while (index >= 0) {
+            percolateDown(arr, index, endIndex);
+            index--;
+        }
+    }
+
+    static void percolateDown(int[] arr, int index, int endIndex) {
+        int leftChildIndex = getLeftChildIndex(index, endIndex);
+        int rightChildIndex = getRightChildIndex(index, endIndex);
+        if (leftChildIndex != -1 && arr[leftChildIndex] > arr[index]) {
+            swap(arr, leftChildIndex, index);
+            percolateDown(arr, leftChildIndex, endIndex);
+        }
+        if (rightChildIndex != -1 && arr[rightChildIndex] > arr[index]) {
+            swap(arr, rightChildIndex, index);
+            percolateDown(arr, leftChildIndex, endIndex);
+        }
+    }
+
+    public static int getLeftChildIndex(int index, int endIndex) {
+        int leftChildIndex = 2 * index + 1;
+        if (leftChildIndex > endIndex)
+            return -1;
+        return leftChildIndex;
+    }
+
+    public static int getRightChildIndex(int index, int endIndex) {
+        int rightChildIndex = 2 * index + 2;
+        if (rightChildIndex > endIndex)
+            return -1;
+        return rightChildIndex;
+    }
+
+    public static int getParentIndex(int index, int endIndex) {
+        if (index < 0 || index > endIndex)
+            return -1;
+        return (index - 1) / 2;
+    }
+
     static void quickSort(int[] arr, int low, int high) {
         if (low >= high)
             return;
@@ -155,8 +206,8 @@ public class sortMethods {
     public static void main(String[] args) {
         int[] arr = new int[10];
         getList(arr);
-        quickSort(arr, 0, arr.length - 1);
-        System.out.print("\nSorted List (quick sort) = ");
+        heapSort(arr);
+        System.out.print("\nSorted List (heap sort) = ");
         printList(arr);
     }
 }
