@@ -17,7 +17,7 @@ public class buildTree {
             TreeNode curr = queue.peek();
             queue.remove();
 
-            String currVal = ip[1];
+            String currVal = ip[i];
 
             if (!currVal.equals("N")) {
                 curr.left = new TreeNode(Integer.parseInt(currVal));
