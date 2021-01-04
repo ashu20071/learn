@@ -34,7 +34,7 @@ public class HeapSort {
         }
         if (rightChildIndex != -1 && arr[rightChildIndex] > arr[index]) {
             swap(arr, rightChildIndex, index);
-            percolateDown(arr, leftChildIndex, endIndex);
+            percolateDown(arr, rightChildIndex, endIndex);
         }
     }
 

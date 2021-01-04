@@ -1,5 +1,10 @@
 package SortMethods;
 
+import Heap.MinHeap;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class sortMethods {
     static void printList(int[] arr) {
         for (int i : arr)
@@ -22,5 +27,8 @@ public class sortMethods {
         heapSort.heapSort(arr);
         System.out.print("\nSorted List (heap sort) = ");
         printList(arr);
+
+        Deque<Integer> deque = new ArrayDeque<>();
+        deque.removeLast();
     }
 }
