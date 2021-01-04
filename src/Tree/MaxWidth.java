@@ -42,7 +42,7 @@ public class MaxWidth {
     public static void main(String[] args) {
         buildTree tree = new buildTree();
         TreeNode root;
-        root = tree.build("1 2 3 ");
+        root = tree.build("1 2 3 4 5 6 7 8");
         MaxWidth m = new MaxWidth();
         System.out.println("MaxWidth of tree = "+m.getMaxWidth(root));
     }
