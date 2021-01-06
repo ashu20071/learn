@@ -5,11 +5,6 @@ import java.util.*;
 
 public class View {
 
-    int max = 0;
-    int maxLeft = 0;
-    int maxRight = 0;
-    ArrayList<Integer> list = new ArrayList<>();
-
     void topView(TreeNode root) {
         if (root == null)
             return;
@@ -33,30 +28,12 @@ public class View {
 
         for (Map.Entry<Integer, TreeNode> entry : map.entrySet())
             System.out.print(entry.getValue().data+" ");
-
-        /* This method also works but not optimal
-
-        List<Integer> list = new ArrayList<>();
-        if (root == null)
-            return;
-
-        getMaxLeft(root, 0, list);
-        for (int i = list.size() - 1; i >= 0; i--)
-            System.out.print(list.get(i) + " ");
-
-        System.out.print(root.data + " ");
-        list.clear();
-
-        getMaxRight(root, 0, list);
-        for (Integer integer : list)
-            System.out.print(integer + " ");
-
-        maxLeft = 0;
-        maxRight = 0;*/
     }
 
     void bottomView(TreeNode root) {
-        ArrayList<Integer> list = new ArrayList<>();
+        if (root == null)
+            return;
+
         Queue<TreeNode> queue = new LinkedList<>();
         Map<Integer, Integer> map = new TreeMap<>();
 
@@ -80,6 +57,9 @@ public class View {
         for (Map.Entry<Integer, Integer> entry : map.entrySet())
             System.out.print((entry.getValue())+" ");
     }
+
+    int max = 0;
+    ArrayList<Integer> list = new ArrayList<>();
 
     void leftView(TreeNode root) {
         if (root != null)
@@ -133,33 +113,6 @@ public class View {
 
         rightV(root.right, level + 1);
         rightV(root.left, level + 1);
-    }
-
-    /*helper methods for top view */
-    void getMaxLeft(TreeNode root, int level, List<Integer> list) {
-        if (root == null)
-            return;
-
-        if (maxLeft < level) {
-            list.add(root.data);
-            maxLeft = level;
-        }
-        getMaxLeft(root.left, level + 1, list);
-        getMaxLeft(root.right, level - 1, list);
-
-    }
-
-    void getMaxRight(TreeNode root, int level, List<Integer> list) {
-        if (root == null)
-            return;
-
-        if (maxRight < level) {
-            list.add(root.data);
-            maxRight = level;
-        }
-        getMaxRight(root.right, level + 1, list);
-        getMaxRight(root.left, level - 1, list);
-
     }
 
     public static void main(String[] args) throws IOException {
