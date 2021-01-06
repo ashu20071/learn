@@ -1,6 +1,7 @@
 package Tree;
 
 class TreeNode {
+    public int hd;
     int data;
     TreeNode left, right;
 

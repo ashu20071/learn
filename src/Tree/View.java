@@ -1,16 +1,16 @@
 package Tree;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 public class View {
 
-    // function should print the topView of the binary tree
+    int max = 0;
     int maxLeft = 0;
     int maxRight = 0;
+    ArrayList<Integer> list = new ArrayList<>();
 
     void topView(TreeNode root) {
-        // add your code
         List<Integer> list = new ArrayList<>();
         if (root == null)
             return;
@@ -28,9 +28,89 @@ public class View {
 
         maxLeft = 0;
         maxRight = 0;
-
     }
 
+    void bottomView(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        Map<Integer, Integer> map = new TreeMap<>();
+
+        root.hd = 0;
+        queue.add(root);
+
+        while(!queue.isEmpty()) {
+            TreeNode curr = queue.poll();
+            map.put(curr.hd, curr.data);
+
+            if (curr.left != null) {
+                curr.left.hd = curr.hd - 1;
+                queue.add(curr.left);
+            }
+            if (curr.right != null) {
+                curr.right.hd = curr.hd + 1;
+                queue.add(curr.right);
+            }
+        }
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet())
+            System.out.print((entry.getValue())+" ");
+    }
+
+    void leftView(TreeNode root) {
+        if (root != null)
+            list.add(root.data);
+        left(root, 1);
+        System.out.println(list);;
+    }
+
+    /* helper method for left view */
+    void left(TreeNode root, int level) {
+        if (root == null)
+            return;
+
+        if (max < level) {
+            if (root.left != null) {
+                list.add(root.left.data);
+                max = level;
+            }
+            else if (root.right != null) {
+                list.add(root.right.data);
+                max = level;
+            }
+        }
+
+        left(root.left, level + 1);
+        left(root.right, level + 1);
+    }
+
+    void rightView(TreeNode root) {
+        if (root != null)
+            list.add(root.data);
+        rightV(root, 1);
+        System.out.println(list);
+    }
+
+    /* helper method for right view */
+    void rightV(TreeNode root, int level) {
+        if (root == null)
+            return;
+
+        if (max < level) {
+            if (root.right != null) {
+                list.add(root.right.data);
+                max = level;
+            }
+            else if (root.left != null) {
+                list.add(root.left.data);
+                max = level;
+            }
+        }
+
+        rightV(root.right, level + 1);
+        rightV(root.left, level + 1);
+    }
+
+    /*helper methods for top view */
     void getMaxLeft(TreeNode root, int level, List<Integer> list) {
         if (root == null)
             return;
@@ -55,5 +135,38 @@ public class View {
         getMaxRight(root.right, level + 1, list);
         getMaxRight(root.left, level - 1, list);
 
+    }
+
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        buildTree tree = new buildTree();
+        EnterInput input = new EnterInput();
+        String string = input.treeInput();
+        TreeNode root = tree.build(string);
+        View view = new View();
+
+        System.out.println("Please select view of tree to be displayed from below options:" +
+                "\n1. Left View\n2. Right View\n3. Top View\n4. Bottom View");
+        int inp = scanner.nextInt();
+
+        switch (inp) {
+            case 1 -> {
+                System.out.print("Left View = ");
+                view.leftView(root);
+            }
+            case 2 -> {
+                System.out.print("Right View = ");
+                view.rightView(root);
+            }
+            case 3 -> {
+                System.out.print("Top View = ");
+                view.topView(root);
+            }
+            case 4 -> {
+                System.out.print("Bottom View = ");
+                view.bottomView(root);
+            }
+            default -> System.out.println("Please enter integer value (1 to 4)");
+        }
     }
 }
