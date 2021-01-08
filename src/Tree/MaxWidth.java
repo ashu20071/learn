@@ -1,11 +1,14 @@
 package Tree;
 
-import java.util.LinkedList;
-import java.util.Queue;
+
+import java.util.*;
+
 
 public class MaxWidth {
     int getMaxWidth(TreeNode root)
     {
+
+
         int width;
         int maxWidth = 0;
 
@@ -18,6 +21,34 @@ public class MaxWidth {
         }
 
         return maxWidth;
+    }
+
+    void levelOrder(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        List<List<Integer>> finalList = new ArrayList<>();
+        if (root == null)
+            return;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        q.add(null);
+        while(!q.isEmpty()) {
+            TreeNode curr = q.poll();
+            if(curr == null) {
+                List<Integer> newList = new ArrayList<>(list);
+                finalList.add(newList);
+                list.clear();
+                if (!q.isEmpty())
+                    q.add(null);
+            }
+            else {
+                list.add(curr.data);
+                if (curr.left != null)
+                    q.add(curr.left);
+                if (curr.right != null)
+                    q.add(curr.right);
+            }
+        }
+        System.out.println(finalList);
     }
 
     int width(TreeNode root, int l) {
@@ -88,9 +119,10 @@ public class MaxWidth {
     public static void main(String[] args) {
         buildTree tree = new buildTree();
         TreeNode root;
-        root = tree.build("1 3 2 5 3 N 9");
+        root = tree.build("3 9 20 N N 15 7");
         MaxWidth m = new MaxWidth();
-        System.out.println("Width at level 2 = "+m.width(root, 2));
+        m.levelOrder(root);
+        //System.out.println("Width at level 2 = "+m.width(root, 2));
         //System.out.println("MaxWidth of tree = "+m.getMaxWidth(root));
         //System.out.println("Width at level 3 = "+m.getWidth(root, 3));
     }

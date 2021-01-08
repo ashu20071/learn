@@ -1,5 +1,8 @@
 package Tree;
 
+import java.util.ArrayList;
+
+
 public class kthLargest {
     int i = 1;
     // return the Kth largest element in the given BST rooted at 'root'
@@ -17,10 +20,25 @@ public class kthLargest {
         return 0;
     }
 
+    //return kth smallest element in a binary search tree
+    public int kthSmallest(TreeNode root, int k) {
+        ArrayList<Integer> nums = inorder(root, new ArrayList<Integer>());
+        return nums.get(k - 1);
+    }
+    public ArrayList<Integer> inorder(TreeNode root, ArrayList<Integer> arr) {
+        if (root == null)
+            return arr;
+        inorder(root.left, arr);
+        arr.add(root.data);
+        inorder(root.right, arr);
+        return arr;
+    }
+
+
     public static void main(String[] args) {
         buildTree tree = new buildTree();
         TreeNode root =  tree.build("78 69 80 4 72 79");
         kthLargest k = new kthLargest();
-        System.out.println("Answer = "+k.kLargest(root, 5));
+        System.out.println("Answer = "+k.kthSmallest(root, 5));
     }
 }

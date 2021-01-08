@@ -65,7 +65,7 @@ public class View {
         if (root != null)
             list.add(root.data);
         left(root, 1);
-        System.out.println(list);;
+        System.out.println(list);
     }
 
     /* helper method for left view */

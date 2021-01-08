@@ -11,7 +11,7 @@ public class buildTree {
         TreeNode root = new TreeNode(Integer.parseInt(ip[0]));
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        //78 69 80 4 72 79
+
         int i = 1;
         while (queue.size() > 0 && i < ip.length) {
             TreeNode curr = queue.peek();
