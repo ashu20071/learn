@@ -7,8 +7,6 @@ import java.util.*;
 public class MaxWidth {
     int getMaxWidth(TreeNode root)
     {
-
-
         int width;
         int maxWidth = 0;
 
