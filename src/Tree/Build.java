@@ -9,15 +9,10 @@ import java.util.Queue;
 class Build{
 
     public static void main(String[] args)throws IOException{
-        //Scanner sc=new Scanner(System.in);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int n=Integer.parseInt(br.readLine());
-
-
         Queue<TreeNode> q = new LinkedList<>();
-
-
 
         String[] input = br.readLine().trim().split(" ");
 
@@ -37,7 +32,6 @@ class Build{
             }
 
             TreeNode pick = q.peek();
-
             q.remove();
 
             if(lr=='L'){
@@ -58,7 +52,5 @@ class Build{
         }
         new View().topView(root);
         System.out.println();
-
-
     }
 }
