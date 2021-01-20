@@ -3,7 +3,7 @@ package Tree;
 import java.util.ArrayList;
 
 
-public class kthLargest {
+public class KthLargest {
     int i = 1;
     // return the Kth largest element in the given BST rooted at 'root'
     public int kLargest(TreeNode root, int K)
@@ -36,9 +36,9 @@ public class kthLargest {
 
 
     public static void main(String[] args) {
-        buildTree tree = new buildTree();
+        BuildTree tree = new BuildTree();
         TreeNode root =  tree.build("78 69 80 4 72 79");
-        kthLargest k = new kthLargest();
+        KthLargest k = new KthLargest();
         System.out.println("Answer = "+k.kthSmallest(root, 5));
     }
 }

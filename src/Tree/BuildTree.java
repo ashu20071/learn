@@ -3,8 +3,8 @@ package Tree;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class buildTree {
-    TreeNode build(String string) {
+public class BuildTree {
+    public TreeNode build(String string) {
         if (string.length() == 0 || string.charAt(0) == 'N')
             return null;
         String[] ip = string.split(" ");

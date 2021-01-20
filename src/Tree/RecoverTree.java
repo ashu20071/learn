@@ -86,7 +86,7 @@ public class RecoverTree {
     }*/
 
     public static void main(String[] args) {
-        buildTree tree = new buildTree();
+        BuildTree tree = new BuildTree();
         TreeNode root = tree.build("3 1 4 N N 2");
         RecoverTree t = new RecoverTree();
         t.recoverTree(root);

@@ -1,6 +1,6 @@
 package Tree;
 
-public class sumTree {
+public class SumTree {
 
     boolean isSumTree(TreeNode root) {
         if (root == null || root.left == null && root.right == null)
@@ -19,10 +19,9 @@ public class sumTree {
     }
 
     public static void main(String[] args) {
-        buildTree tree = new buildTree();
-        TreeNode root =  tree.build("nn");
-        sumTree sumTree = new sumTree();
+        BuildTree tree = new BuildTree();
+        TreeNode root =  tree.build("3 1 2");
+        SumTree sumTree = new SumTree();
         System.out.println(sumTree.isSumTree(root));
-        System.out.println("Please enter integer values");
     }
 }

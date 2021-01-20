@@ -1,11 +1,11 @@
 package Tree;
 
-class TreeNode {
+public class TreeNode {
     public int hd;
-    int data;
-    TreeNode left, right;
+    public int data;
+    public TreeNode left, right;
 
-    TreeNode (int item) {
+    public TreeNode (int item) {
         this.data = item;
         left = right = null;
     }

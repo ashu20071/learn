@@ -1,9 +1,9 @@
 package Tree;
 
-public class qObj {
+public class QObj {
     TreeNode root;
     int i;
-    public qObj(TreeNode root, int i) {
+    public QObj(TreeNode root, int i) {
         this.root = root;
         this.i = i;
     }

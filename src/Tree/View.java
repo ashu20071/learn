@@ -9,21 +9,21 @@ public class View {
         if (root == null)
             return;
 
-        Queue<qObj> queue = new LinkedList<>();
+        Queue<QObj> queue = new LinkedList<>();
         Map<Integer, TreeNode> map = new TreeMap<>();
 
-        queue.add(new qObj(root, 0));
+        queue.add(new QObj(root, 0));
 
         while (!queue.isEmpty()) {
-            qObj curr = queue.poll();
+            QObj curr = queue.poll();
 
             if (!map.containsKey(curr.i))
                 map.put(curr.i, curr.root);
 
             if (curr.root.left != null)
-                queue.add(new qObj(curr.root.left, curr.i - 1));
+                queue.add(new QObj(curr.root.left, curr.i - 1));
             if (curr.root.right != null)
-                queue.add(new qObj(curr.root.right, curr.i + 1));
+                queue.add(new QObj(curr.root.right, curr.i + 1));
         }
 
         for (Map.Entry<Integer, TreeNode> entry : map.entrySet())
@@ -117,7 +117,7 @@ public class View {
 
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        buildTree tree = new buildTree();
+        BuildTree tree = new BuildTree();
         EnterInput input = new EnterInput();
         String string = input.treeInput();
         TreeNode root = tree.build(string);

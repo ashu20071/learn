@@ -1,6 +1,6 @@
 package Tree;
 
-public class isValidBST {
+public class IsValidBST {
     public boolean validateBST(TreeNode root) {
         return isBST(root, null, null);
     }
@@ -16,8 +16,8 @@ public class isValidBST {
     }
 
     public static void main(String[] args) {
-        isValidBST b = new isValidBST();
-        buildTree tree = new buildTree();
+        IsValidBST b = new IsValidBST();
+        BuildTree tree = new BuildTree();
         TreeNode root = tree.build("-2147483648 N 2147483647");
         System.out.println(b.validateBST(root));
     }

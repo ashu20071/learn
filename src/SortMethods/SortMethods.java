@@ -5,7 +5,7 @@ import Heap.MinHeap;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class sortMethods {
+public class SortMethods {
     static void printList(int[] arr) {
         for (int i : arr)
             System.out.print(i+" ");

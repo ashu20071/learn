@@ -7,18 +7,18 @@ public class TestSumTree {
 
     @Test
     public void validSumTree() {
-        buildTree tree = new buildTree();
+        BuildTree tree = new BuildTree();
         TreeNode root =  tree.build("3 1 2");
-        sumTree sumTree = new sumTree();
+        SumTree sumTree = new SumTree();
         assertTrue(sumTree.isSumTree(root));
     }
 
     @Test
     public void invalidSumTree() {
         try {
-            buildTree tree = new buildTree();
+            BuildTree tree = new BuildTree();
             TreeNode root =  tree.build("nn");
-            sumTree sumTree = new sumTree();
+            SumTree sumTree = new SumTree();
             assertTrue(sumTree.isSumTree(root));
         }
         catch (Exception e) {
@@ -29,9 +29,9 @@ public class TestSumTree {
     @Test
     public void nullSumTree() {
         try {
-            buildTree tree = new buildTree();
+            BuildTree tree = new BuildTree();
             TreeNode root =  tree.build(null);
-            sumTree sumTree = new sumTree();
+            SumTree sumTree = new SumTree();
             assertTrue(sumTree.isSumTree(root));
         }
         catch (Exception e) {

@@ -51,16 +51,16 @@ public class MaxWidth {
 
     int width(TreeNode root, int l) {
         int maxWidth = 0; int widthAtLevel = 0;
-        Queue<qObj> queue = new LinkedList<>();
-        qObj qObj = new qObj(root, 0);
-        qObj temp = qObj;
+        Queue<QObj> queue = new LinkedList<>();
+        QObj qObj = new QObj(root, 0);
+        QObj temp = qObj;
         queue.add(qObj);
         queue.add(null);
         int width = 1;
         int level = 1; int a = 0; int b = 0;
         System.out.print("Level "+level+" = ");
         while(!queue.isEmpty()) {
-            qObj curr = queue.poll();
+            QObj curr = queue.poll();
 
             if (curr == null) {
                 b = temp.i;
@@ -81,9 +81,9 @@ public class MaxWidth {
             else {
                 System.out.print("("+curr.root.data+","+curr.i+") ");
                 if (curr.root.left != null)
-                    queue.add(new qObj(curr.root.left, 2 * (curr.i)));
+                    queue.add(new QObj(curr.root.left, 2 * (curr.i)));
                 if (curr.root.right != null)
-                    queue.add(new qObj(curr.root.right, 2 * (curr.i) + 1));
+                    queue.add(new QObj(curr.root.right, 2 * (curr.i) + 1));
             }
             temp = curr;
         }
@@ -115,7 +115,7 @@ public class MaxWidth {
     }
 
     public static void main(String[] args) {
-        buildTree tree = new buildTree();
+        BuildTree tree = new BuildTree();
         TreeNode root;
         root = tree.build("3 9 20 N N 15 7");
         MaxWidth m = new MaxWidth();
