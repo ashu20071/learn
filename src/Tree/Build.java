@@ -50,7 +50,7 @@ class Build{
 
             n-=2;
         }
-        new View().topView(root);
+        new ViewsOfTree().topView(root);
         System.out.println();
     }
 }

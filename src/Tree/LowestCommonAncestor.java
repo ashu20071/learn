@@ -1,7 +1,6 @@
 package Tree;
 
 public class LowestCommonAncestor {
-    //returns lowest common ancestor in a binary tree
     TreeNode answer;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (exists(p.left, q.data) || exists(p.right, q.data))

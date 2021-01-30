@@ -2,7 +2,6 @@ package JUnitTestCase;
 
 
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 
 public class TestEmployeeDetails {
@@ -12,7 +11,7 @@ public class TestEmployeeDetails {
 
     //test to check appraisal
     @Test
-    public void testCalculateAppriasal() {
+    public void testCalculateAppraisal() {
         employee.setName("Rajeev");
         employee.setAge(25);
         employee.setMonthlySalary(8000);

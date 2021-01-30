@@ -3,7 +3,7 @@ package Tree;
 import java.io.IOException;
 import java.util.*;
 
-public class View {
+public class ViewsOfTree {
 
     void topView(TreeNode root) {
         if (root == null)
@@ -121,7 +121,7 @@ public class View {
         EnterInput input = new EnterInput();
         String string = input.treeInput();
         TreeNode root = tree.build(string);
-        View view = new View();
+        ViewsOfTree view = new ViewsOfTree();
 
         System.out.println("Please select view of tree to be displayed from below options:" +
                 "\n1. Left View\n2. Right View\n3. Top View\n4. Bottom View");
