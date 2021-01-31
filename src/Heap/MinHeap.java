@@ -44,4 +44,9 @@ public class MinHeap<T extends Comparable> extends Heap {
             siftUp(parentIndex);
         }
     }
+
+    protected void printHeapArray(MinHeap<T> minHeap) {
+        for (int i = 0; i < minHeap.getCount(); i++)
+            System.out.print(minHeap.getElementAtIndex(i)+" ");
+    }
 }
