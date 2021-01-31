@@ -3,8 +3,8 @@ package Graph;
 import java.util.*;
 
 public class GraphNode {
-    private int vertex;
-    private Set<Integer> adjacencySet = new HashSet<>();
+    private final int vertex;
+    private final Set<Integer> adjacencySet = new HashSet<>();
 
     public GraphNode(int vertex) {
         this.vertex = vertex;

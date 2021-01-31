@@ -10,6 +10,6 @@ public interface Graph {
 
     void addEdge(int v1, int v2);
     int getNumVertices();
-    int getIndegree(int v);
+    int getInDegree(int v);
     List<Integer> getAdjacentVertices(int v);
 }

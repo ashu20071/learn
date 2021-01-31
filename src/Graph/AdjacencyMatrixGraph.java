@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class AdjacencyMatrixGraph implements Graph {
-    private int[][] adjacencyMatrix;
+    private final int[][] adjacencyMatrix;
     private GraphType graphType = GraphType.DIRECTED;
     private int numVertices = 0;
 
@@ -50,14 +50,14 @@ public class AdjacencyMatrixGraph implements Graph {
         return numVertices;
     }
 
-    public int getIndegree(int v) {
+    public int getInDegree(int v) {
         if (v < 0 || v >= numVertices)
             throw new IllegalArgumentException("Vertex is not valid");
-        int indegree = 0;
+        int inDegree = 0;
         for (int i = 0; i < getNumVertices(); i++) {
             if (adjacencyMatrix[i][v] != 0)
-                indegree++;
+                inDegree++;
         }
-        return indegree;
+        return inDegree;
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class AdjacencySetGraph implements Graph {
-    private List<GraphNode> vertexList = new ArrayList<>();
+    private final List<GraphNode> vertexList = new ArrayList<>();
     private GraphType graphType = GraphType.DIRECTED;
     private int numVertices = 0;
 
@@ -46,10 +46,10 @@ public class AdjacencySetGraph implements Graph {
             depthFirstTraversal(graph, visited, vertex);
         System.out.print(currentVertex+" ");
 
-        //For unconnected graph, traverse through all vertices
-        /*
-        for (int i = 0; i < numVertices; i++)
-            depthFirstTraversal(graph, visited, i);
+        /**
+         * For unconnected graph, traverse through all vertices
+         * for (int i = 0; i < numVertices; i++)
+         *     depthFirstTraversal(graph, visited, i);
          */
     }
 
@@ -69,21 +69,21 @@ public class AdjacencySetGraph implements Graph {
                     queue.add(v);
             }
         }
-        //For unconnected graph, traverse through all vertices
-        /*
-        for (int i = 0; i < numVertices; i++)
-            breadthFirstTraversal(graph, visited, i);
+        /**
+         * For unconnected graph, traverse through all vertices
+         * for (int i = 0; i < numVertices; i++)
+         *     breadthFirstTraversal(graph, visited, i);
          */
     }
 
-    public int getIndegree(int v) {
+    public int getInDegree(int v) {
         if (v < 0 || v >= numVertices)
             throw new IllegalArgumentException("Vertex is not valid");
-        int indegree = 0;
+        int inDegree = 0;
         for (int i = 0; i < getNumVertices(); i++) {
             if (getAdjacentVertices(i).contains(v))
-                indegree++;
+                inDegree++;
         }
-        return indegree;
+        return inDegree;
     }
 }
