@@ -18,6 +18,11 @@ public class AdjacencySetGraph implements Graph {
     }
 
     @Override
+    public int getWeightedEdge(int currentVertex, Integer neighbour) {
+        return vertexList.get(currentVertex).getVertex();
+    }
+
+    @Override
     public void addEdge(int v1, int v2) {
         if (v1 < 0 || v1 >= numVertices || v2 < 0 || v2 >= numVertices)
             throw new IllegalArgumentException("Vertex is not valid");
@@ -35,6 +40,17 @@ public class AdjacencySetGraph implements Graph {
 
     public int getNumVertices() {
         return numVertices;
+    }
+
+    public int getInDegree(int v) {
+        if (v < 0 || v >= numVertices)
+            throw new IllegalArgumentException("Vertex is not valid");
+        int inDegree = 0;
+        for (int i = 0; i < getNumVertices(); i++) {
+            if (getAdjacentVertices(i).contains(v))
+                inDegree++;
+        }
+        return inDegree;
     }
 
     public void depthFirstTraversal(Graph graph, int[] visited, int currentVertex) {
@@ -74,16 +90,5 @@ public class AdjacencySetGraph implements Graph {
          * for (int i = 0; i < numVertices; i++)
          *     breadthFirstTraversal(graph, visited, i);
          */
-    }
-
-    public int getInDegree(int v) {
-        if (v < 0 || v >= numVertices)
-            throw new IllegalArgumentException("Vertex is not valid");
-        int inDegree = 0;
-        for (int i = 0; i < getNumVertices(); i++) {
-            if (getAdjacentVertices(i).contains(v))
-                inDegree++;
-        }
-        return inDegree;
     }
 }

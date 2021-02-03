@@ -22,6 +22,11 @@ public class AdjacencyMatrixGraph implements Graph {
     }
 
     @Override
+    public int getWeightedEdge(int currentVertex, Integer neighbour) {
+        return adjacencyMatrix[currentVertex][neighbour];
+    }
+
+    @Override
     public void addEdge(int v1, int v2) {
         if (v1 < 0 || v1 >= numVertices || v2 < 0 || v2 >= numVertices)
             throw new IllegalArgumentException("Vertex number is not valid");
