@@ -3,7 +3,7 @@ package Graph;
 import java.util.*;
 
 /**
- * This class holds distance info of any vertex in an Weighted Graph.
+ * This class holds distance info of any vertex in an Weighted Graph with negative edge values.
  * The distance specified is the distance from the source vertex.
  * Last vertex is the last vertex seen in the path from source to this vertex.
  */
@@ -47,8 +47,8 @@ public class BellmanFord {
         // Relaxing process for every edge numEdges - 1 times
         for (int numIterations = 0; numIterations < graph.getNumVertices() - 1; numIterations++) {
             // Add all the vertices in the queue so we're sure all edges are covered
-            for (int v = 0; v < graph.getNumVertices(); v++)
-                queue.add(v);
+            for (int i = 0; i < graph.getNumVertices(); i++)
+                queue.add(i);
             // Keep track of edges so we visit each edge just once
             Set<String> visitedEdges = new HashSet<>();
             while (!queue.isEmpty()) {
@@ -57,6 +57,7 @@ public class BellmanFord {
                     String edge = String.valueOf(currentVertex) + String.valueOf(neighbour);
                     if (visitedEdges.contains(edge))
                         continue;
+                    visitedEdges.add(edge);
                     int distance = distanceTable.get(currentVertex).getDistance() + graph.getWeightedEdge(currentVertex, neighbour);
                     // If we find new shortest path, update in distance table
                     if (distance < distanceTable.get(neighbour).getDistance()) {
