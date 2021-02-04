@@ -37,6 +37,7 @@ class DistanceInfoUW {
     }
 }
 
+// Shortest path in an unweighted graph; Weight of all edges = 1
 public class ShortestPath {
     public Map<Integer, DistanceInfoUW> buildDistanceTable(Graph graph, int source) {
         Map<Integer, DistanceInfoUW> distanceTable = new HashMap<>();
