@@ -3,6 +3,7 @@ package GeekTrust.TameOfThrones;
 import java.util.HashMap;
 import java.util.Map;
 
+// Class to store final values of symbolic animals of corresponding kingdoms in map structure
 public class KingdomSymbols {
     private final Map<String, String> symbols;
 
