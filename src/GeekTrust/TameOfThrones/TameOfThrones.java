@@ -3,7 +3,9 @@ package GeekTrust.TameOfThrones;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+// TODO: Implement parallel processing for messages
+// TODO: Store message responses in data appropriate structures for future retrieval
+// TODO: Write test cases
 public class TameOfThrones {
     KingdomSymbols kingdomSymbols = new KingdomSymbols();
 
@@ -40,12 +42,12 @@ public class TameOfThrones {
     public static void main(String[] args) throws IOException {
         File file = new File("/home/ashutosh/Downloads/input.txt");
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-        String message;
-        int allegianceCounter = 0;
-        String response;
-
+        // Initializing variables and objects
         TameOfThrones tameOfThrones = new TameOfThrones();
         String output = "";
+        int allegianceCounter = 0;
+        String message;
+        String response;
         // Iterate through input stream in input file and send each message to decipher method
         while ((message = bufferedReader.readLine()) != null) {
             response = tameOfThrones.decipher(message);
