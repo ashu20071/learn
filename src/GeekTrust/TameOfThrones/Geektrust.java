@@ -3,17 +3,17 @@ package GeekTrust.TameOfThrones;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
 // TODO: Implement parallel processing for messages
-// TODO: Store message responses in data appropriate structures for future retrieval
-// TODO: Write test cases
-public class TameOfThrones {
+
+public class Geektrust {
     KingdomSymbols kingdomSymbols = new KingdomSymbols();
 
     // Method to decipher secret message sent to a kingdom
     public String decipher(String message) {
         String[] strings = message.split(" ");
         String symbol = "";
-        // Retrieve symbol animal of respective kingdom from the input stream
+        // Retrieve symbol animal of respective kingdom based on the input stream
         if (kingdomSymbols.getSymbols().containsKey(strings[0]))
             symbol = kingdomSymbols.getSymbols().get(strings[0]);
         // Length of symbol string will determine the cipher key
@@ -43,22 +43,23 @@ public class TameOfThrones {
         File file = new File("/home/ashutosh/Downloads/input.txt");
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         // Initializing variables and objects
-        TameOfThrones tameOfThrones = new TameOfThrones();
+        Geektrust geekTrust = new Geektrust();
+        List<String> allies = new ArrayList<>();
         String output = "";
-        int allegianceCounter = 0;
         String message;
         String response;
         // Iterate through input stream in input file and send each message to decipher method
         while ((message = bufferedReader.readLine()) != null) {
-            response = tameOfThrones.decipher(message);
-            // If allegiance acquired, increment counter and append answer string with kingdom name
+            response = geekTrust.decipher(message);
+            // If allegiance acquired, increment counter and append output string with kingdom name
+            // Also add those kingdoms to allies ArrayList for future retrieval
             if (!response.equals("")) {
-                allegianceCounter++;
+                allies.add(response);
                 output = output.concat(" "+response);
             }
         }
         // If allegiance counter less than 3; set output to NONE
-        output = (allegianceCounter < 3) ? "NONE" : "SPACE" + output;
+        output = (allies.size() < 3) ? "NONE" : "SPACE" + output;
         System.out.println(output);
     }
 }
