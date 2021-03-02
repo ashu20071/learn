@@ -68,4 +68,5 @@ public class Geektrust {
         output = (allies.size() < 3) ? "NONE" : "SPACE" + output;
         System.out.println(output);
     }
+
 }
