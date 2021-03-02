@@ -14,6 +14,9 @@ class GeektrustTest {
     void decipherTest() {
         assertEquals("AIR", geekTrust.decipher("AIR ROZO"));
         assertEquals("", geekTrust.decipher("AIR OWLAOWLBOWLC"));
+        assertNotEquals("AIR", geekTrust.decipher("AIR OWLAOWLBOWLC"));
+        assertThrows(IllegalArgumentException.class, () -> {
+            geekTrust.decipher("");
+        });
     }
-
 }

@@ -16,6 +16,8 @@ public class Geektrust {
         // Retrieve symbol animal of respective kingdom based on the input stream
         if (kingdomSymbols.getSymbols().containsKey(strings[0]))
             symbol = kingdomSymbols.getSymbols().get(strings[0]);
+        else
+            throw new IllegalArgumentException("Incorrect kingdom name");
         // Length of symbol string will determine the cipher key
         int length = symbol.length();
         // Convert secret message to ArrayList to help iterate through message
@@ -50,12 +52,16 @@ public class Geektrust {
         String response;
         // Iterate through input stream in input file and send each message to decipher method
         while ((message = bufferedReader.readLine()) != null) {
-            response = geekTrust.decipher(message);
-            // If allegiance acquired, increment counter and append output string with kingdom name
-            // Also add those kingdoms to allies ArrayList for future retrieval
-            if (!response.equals("")) {
-                allies.add(response);
-                output = output.concat(" "+response);
+            try {
+                response = geekTrust.decipher(message);
+                // If allegiance acquired, increment counter and append output string with kingdom name
+                // Also add those kingdoms to allies ArrayList for future retrieval
+                if (!response.equals("")) {
+                    allies.add(response);
+                    output = output.concat(" "+response);
+                }
+            }catch (Exception exception) {
+                System.out.println(exception);
             }
         }
         // If allegiance counter less than 3; set output to NONE
