@@ -13,7 +13,7 @@ public class Geektrust {
     public String decipher(String message) {
         String[] strings = message.split(" ");
         String symbol = "";
-        // Retrieve symbol animal of respective kingdom based on the input stream
+        // Retrieve animal symbol of respective kingdom based on the input stream
         if (kingdomSymbols.getSymbols().containsKey(strings[0]))
             symbol = kingdomSymbols.getSymbols().get(strings[0]);
         else
@@ -24,7 +24,7 @@ public class Geektrust {
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < strings[1].length(); i++)
             list.add((int) strings[1].charAt(i));
-        // If Iterate through the message; add cipher key to ascii value of each char
+        // Iterate through the message; add cipher key to ascii value of each char
         for (int i = 0; i < symbol.length(); i++) {
             int j = symbol.charAt(i)+length;
             j = (j > 90) ? (j - 90) + 64 : j;
@@ -60,8 +60,8 @@ public class Geektrust {
                     allies.add(response);
                     output = output.concat(" "+response);
                 }
-            }catch (Exception exception) {
-                System.out.println(exception);
+            } catch (Exception exception) {
+                exception.printStackTrace();
             }
         }
         // If allegiance counter less than 3; set output to NONE
