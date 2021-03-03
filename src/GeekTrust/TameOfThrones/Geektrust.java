@@ -8,11 +8,11 @@ import java.util.List;
 
 public class Geektrust {
     KingdomSymbols kingdomSymbols = new KingdomSymbols();
-
+    
     // Method to decipher secret message sent to a kingdom
     public String decipher(String message) {
         String[] strings = message.split(" ");
-        String symbol = "";
+        String symbol;
         // Retrieve animal symbol of respective kingdom based on the input stream
         if (kingdomSymbols.getSymbols().containsKey(strings[0]))
             symbol = kingdomSymbols.getSymbols().get(strings[0]);
