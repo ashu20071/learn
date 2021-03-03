@@ -42,7 +42,7 @@ public class Geektrust {
     }
 
     public static void main(String[] args) throws IOException {
-        File file = new File("/home/ashutosh/Downloads/input.txt");
+        File file = new File(args[0]);
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         // Initializing variables and objects
         Geektrust geekTrust = new Geektrust();
