@@ -1,62 +1,27 @@
 package GeekTrust.TameOfThrones;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 // TODO: Implement parallel processing for messages
 
 public class Geektrust {
-    KingdomSymbols kingdomSymbols = new KingdomSymbols();
-    
-    // Method to decipher secret message sent to a kingdom
-    public String decipher(String message) {
-        // Split secret message with limit of 2 strings to handle spaces in secret message, if any
-        String[] strings = message.split(" ", 2);
-        String symbol;
-        // Retrieve animal symbol of respective kingdom based on the input stream
-        if (kingdomSymbols.getSymbols().containsKey(strings[0]))
-            symbol = kingdomSymbols.getSymbols().get(strings[0]);
-        else
-            throw new IllegalArgumentException("Incorrect kingdom name");
-        // Length of symbol string will determine the cipher key
-        int length = symbol.length();
-        // Convert secret message to ArrayList to help iterate through message
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < strings[1].length(); i++)
-            list.add((int) strings[1].charAt(i));
-        // Iterate through the message; add cipher key to ascii value of each char
-        for (int i = 0; i < symbol.length(); i++) {
-            int j = symbol.charAt(i) + length;
-            j = (j > 90) ? (j - 90) + 64 : j;
-            // If message contains cipher key corresponding to symbol,
-            // remove that char to avoid duplicate matching
-            if (list.contains(j))
-                list.remove((Integer) j);
-            // If message does not contain at least one char corresponding to cipher key,
-                // return null for that message
-            else
-                return "";
-        }
-        // Return kingdom name if message is sufficient to gain allegiance
-        return strings[0];
-    }
-
     public static void main(String[] args) throws IOException {
+        DecipherMessage decipherMessage = new DecipherMessage();
         File file = new File(args[0]);
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         // Initializing variables and objects
-        Geektrust geekTrust = new Geektrust();
-        List<String> allies = new ArrayList<>();
+        Set<String> allies = new HashSet<>();
         String output = "";
         String message;
         String response;
         // Iterate through input stream in input file and send each message to decipher method
         while ((message = bufferedReader.readLine()) != null) {
             try {
-                response = geekTrust.decipher(message);
+                response = decipherMessage.decipher(message);
                 // If allegiance acquired, increment counter and append output string with kingdom name
-                // Also add those kingdoms to allies ArrayList for future retrieval
+                // Also add those kingdoms to allies HashSet for future retrieval and avoid duplication
                 if (!response.equals("")) {
                     allies.add(response);
                     output = output.concat(" "+response);

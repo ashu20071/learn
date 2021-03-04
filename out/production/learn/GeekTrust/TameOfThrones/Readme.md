@@ -20,4 +20,11 @@ Allied kingdoms stored in ArrayList for future retrieval and final output append
 
 Exceptions for incorrect or invalid input is handled by throwing `IllegalArgumentException`.
 
-Test Cases written for positive and negative response and also for invalid input in `GeekTrustTest` class.
+Test Cases written for positive and negative response and also for invalid input in `GeekTrustTest` class. 
+Provide test values in `decipherTest` method in test class to test different values.
+
+How to run
+---
+Run `main` method in `Geektrust` class.
+Pass absolute path to `input` text file as argument containing kingdom name and secret message.
+Refer included `guide` for input examples.
