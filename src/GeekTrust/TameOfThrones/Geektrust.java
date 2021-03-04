@@ -11,7 +11,8 @@ public class Geektrust {
     
     // Method to decipher secret message sent to a kingdom
     public String decipher(String message) {
-        String[] strings = message.split(" ");
+        // Split secret message with limit of 2 strings to handle spaces in secret message, if any
+        String[] strings = message.split(" ", 2);
         String symbol;
         // Retrieve animal symbol of respective kingdom based on the input stream
         if (kingdomSymbols.getSymbols().containsKey(strings[0]))
@@ -26,7 +27,7 @@ public class Geektrust {
             list.add((int) strings[1].charAt(i));
         // Iterate through the message; add cipher key to ascii value of each char
         for (int i = 0; i < symbol.length(); i++) {
-            int j = symbol.charAt(i)+length;
+            int j = symbol.charAt(i) + length;
             j = (j > 90) ? (j - 90) + 64 : j;
             // If message contains cipher key corresponding to symbol,
             // remove that char to avoid duplicate matching
