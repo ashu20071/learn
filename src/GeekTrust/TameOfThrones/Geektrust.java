@@ -17,8 +17,9 @@ public class Geektrust {
         String kingdomName = messageComponent[0];
         KingdomSymbols kingdomSymbols = KingdomSymbols.valueOf(messageComponent[0]);
         if (messageComponent.length < 2 || messageComponent[1].isBlank())
-            throw new IllegalArgumentException("Message is empty");
+            throw new IllegalArgumentException("No message found");
         List<Integer> secretMessage = new ArrayList<>();
+        // Store ascii values of char in secret message
         for (int count = 0; count < messageComponent[1].length(); count++)
             secretMessage.add((int) messageComponent[1].charAt(count));
         return new MessageObject(kingdomName, kingdomSymbols.getKingdomSymbol(), secretMessage);
@@ -29,6 +30,7 @@ public class Geektrust {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         DecipherMessage decipherMessage = new DecipherMessage();
         Set<String> allies = new HashSet<>();
+        int minAlliesRequired = 3;
         String output = "";
         String message;
         // Iterate through input stream in input file; build message object and send each object to decipher
@@ -45,7 +47,7 @@ public class Geektrust {
             }
         }
         // If allegiance counter less than 3; set output to NONE
-        output = (allies.size() < 3) ? "NONE" : "SPACE" + output;
+        output = (allies.size() < minAlliesRequired) ? "NONE" : "SPACE" + output;
         return output;
     }
 

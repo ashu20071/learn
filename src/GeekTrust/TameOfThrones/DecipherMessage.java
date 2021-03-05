@@ -21,7 +21,7 @@ public class DecipherMessage {
             if (secretMessage.contains(messageCode))
                 secretMessage.remove((Integer) messageCode);
                 // If message does not contain at least one char corresponding to cipher key,
-                // return null for that message
+                // return empty string for that message
             else
                 return "";
         }

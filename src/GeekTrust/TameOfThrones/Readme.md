@@ -18,7 +18,7 @@ Enum `KingdomSymbols` holds the animal emblems which is instantiated and retriev
 
 Allied kingdoms stored in HashSet for future retrieval and final output appended in `output` string.
 
-Exceptions for incorrect or invalid input is handled by throwing `IllegalArgumentException`.
+`Exceptions` for incorrect or invalid input is handled by throwing appropriate exceptions.
 
 Test Cases written for positive and negative response and also for invalid input in `GeekTrustTest` class. 
 Provide test values in `decipherTest` method in test class to test different values.
