@@ -1,30 +1,44 @@
 package GeekTrust.TameOfThrones;
 
 import java.io.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
+/**
+ * Driver class to get input from text file as argument and based on input, build the message object.
+ * Print the output to console after deciphering the input secret messages to kingdoms.
+ */
 
 // TODO: Implement parallel processing for messages
 
 public class Geektrust {
-    public static void main(String[] args) throws IOException {
-        DecipherMessage decipherMessage = new DecipherMessage();
-        File file = new File(args[0]);
+    public static MessageObject buildObject(String message) {
+        message = message.toUpperCase();
+        String[] messageComponent = message.split(" ", 2);
+        String kingdomName = messageComponent[0];
+        KingdomSymbols kingdomSymbols = KingdomSymbols.valueOf(messageComponent[0]);
+        if (messageComponent.length < 2 || messageComponent[1].isBlank())
+            throw new IllegalArgumentException("Message is empty");
+        List<Integer> secretMessage = new ArrayList<>();
+        for (int count = 0; count < messageComponent[1].length(); count++)
+            secretMessage.add((int) messageComponent[1].charAt(count));
+        return new MessageObject(kingdomName, kingdomSymbols.getKingdomSymbol(), secretMessage);
+    }
+
+    public static String driver(String filePath) throws IOException {
+        File file = new File(filePath);
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-        // Initializing variables and objects
+        DecipherMessage decipherMessage = new DecipherMessage();
         Set<String> allies = new HashSet<>();
         String output = "";
         String message;
-        String response;
-        // Iterate through input stream in input file and send each message to decipher method
+        // Iterate through input stream in input file; build message object and send each object to decipher
         while ((message = bufferedReader.readLine()) != null) {
             try {
-                response = decipherMessage.decipher(message);
-                // If allegiance acquired, increment counter and append output string with kingdom name
-                // Also add those kingdoms to allies HashSet for future retrieval and avoid duplication
-                if (!response.equals("")) {
+                MessageObject messageObject = buildObject(message);
+                String response = decipherMessage.decipher(messageObject);
+                if (!response.isEmpty()) {
                     allies.add(response);
-                    output = output.concat(" "+response);
+                    output = output.concat(" " + response);
                 }
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -32,7 +46,12 @@ public class Geektrust {
         }
         // If allegiance counter less than 3; set output to NONE
         output = (allies.size() < 3) ? "NONE" : "SPACE" + output;
-        System.out.println(output);
+        return output;
+    }
+
+    public static void main(String[] args) throws IOException {
+        String filePath = args[0];
+        System.out.println(driver(filePath));
     }
 
 }

@@ -12,11 +12,11 @@ Problem source: `GeekTrust.in` [Golden Crown/Tame of Thrones](https://github.com
 
 Solution Description
 ---
-Class `KingdomSymbols` holds the animal emblems in map structure which is instantiated and retrieved on demand.
+Enum `KingdomSymbols` holds the animal emblems which is instantiated and retrieved on demand.
 
-`Decipher` method in `Geektrust` class used to decode the secret message sent by King Shan to other kingdoms and retrieve their response.
+`Decipher` method in `DecipherMessage` class is used to decode the secret message sent by King Shan to other kingdoms and retrieve their responses.
 
-Allied kingdoms stored in ArrayList for future retrieval and final output appended in `output` string.
+Allied kingdoms stored in HashSet for future retrieval and final output appended in `output` string.
 
 Exceptions for incorrect or invalid input is handled by throwing `IllegalArgumentException`.
 
