@@ -9,8 +9,6 @@ import java.util.concurrent.*;
  * Print the output to console after deciphering the input secret messages to kingdoms.
  */
 
-// TODO: Implement parallel processing for messages
-
 public class Geektrust {
     public static MessageObject buildObject(String message) {
         message = message.toUpperCase();
@@ -34,32 +32,32 @@ public class Geektrust {
         int minAlliesRequired = 3;
         String output = "";
         String message;
-        // Multi Threading
         List<Callable<String>> tasks = new ArrayList<>();
         // Iterate through input stream in input file; build message object and send each object to decipher
         while ((message = bufferedReader.readLine()) != null) {
             String finalMessage = message;
-            Callable<String> c = new Callable<>() {
+            Callable<String> callable = new Callable<>() {
                 @Override
                 public String call() {
                     MessageObject messageObject = buildObject(finalMessage);
                     return decipherMessage.decipher(messageObject);
                 }
             };
-            tasks.add(c);
+            tasks.add(callable);
         }
-        ExecutorService exec = Executors.newCachedThreadPool();
+        // Parallel processing
+        ExecutorService executorService = Executors.newCachedThreadPool();
         try {
-            List<Future<String>> results = exec.invokeAll(tasks);
-            for (Future<String> fr : results) {
-                if (!fr.get().isEmpty()) {
-                    allies.add(fr.get());
-                    output = output.concat(" " + fr.get());
+            List<Future<String>> results = executorService.invokeAll(tasks);
+            for (Future<String> futureResult : results) {
+                if (!futureResult.get().isEmpty()) {
+                    allies.add(futureResult.get());
+                    output = output.concat(" " + futureResult.get());
                 }
             }
         }
         finally {
-            exec.shutdown();
+            executorService.shutdown();
         }
         // If allegiance counter less than 3; set output to NONE
         output = (allies.size() < minAlliesRequired) ? "NONE" : "SPACE" + output;
@@ -67,8 +65,8 @@ public class Geektrust {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
-//        long start = System.nanoTime();
         String filePath = args[0];
+//        long start = System.nanoTime();
         System.out.println(driver(filePath));
 //        long end = System.nanoTime();
 //        long execution = end - start;

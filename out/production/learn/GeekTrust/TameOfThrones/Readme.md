@@ -16,9 +16,11 @@ Enum `KingdomSymbols` holds the animal emblems which is instantiated and retriev
 
 `Decipher` method in `DecipherMessage` class is used to decode the secret message sent by King Shan to other kingdoms and retrieve their responses.
 
+Parallel processing implemented using `ExecutorService` and cached thread pool. Assigning tasks for each message and implementing the decipher method in parallel. 
+
 Allied kingdoms stored in HashSet for future retrieval and final output appended in `output` string.
 
-Exceptions for incorrect or invalid input is handled by throwing `IllegalArgumentException`.
+`Exceptions` for incorrect or invalid input is handled by throwing appropriate exceptions.
 
 Test Cases written for positive and negative response and also for invalid input in `GeekTrustTest` class. 
 Provide test values in `decipherTest` method in test class to test different values.
