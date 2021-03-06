@@ -2,6 +2,7 @@ package GeekTrust.TameOfThrones;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.*;
 
 /**
  * Driver class to get input from text file as argument and based on input, build the message object.
@@ -25,7 +26,7 @@ public class Geektrust {
         return new MessageObject(kingdomName, kingdomSymbols.getKingdomSymbol(), secretMessage);
     }
 
-    public static String driver(String filePath) throws IOException {
+    public static String driver(String filePath) throws IOException, InterruptedException, ExecutionException {
         File file = new File(filePath);
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         DecipherMessage decipherMessage = new DecipherMessage();
@@ -33,27 +34,45 @@ public class Geektrust {
         int minAlliesRequired = 3;
         String output = "";
         String message;
+        // Multi Threading
+        List<Callable<String>> tasks = new ArrayList<>();
         // Iterate through input stream in input file; build message object and send each object to decipher
         while ((message = bufferedReader.readLine()) != null) {
-            try {
-                MessageObject messageObject = buildObject(message);
-                String response = decipherMessage.decipher(messageObject);
-                if (!response.isEmpty()) {
-                    allies.add(response);
-                    output = output.concat(" " + response);
+            String finalMessage = message;
+            Callable<String> c = new Callable<>() {
+                @Override
+                public String call() {
+                    MessageObject messageObject = buildObject(finalMessage);
+                    return decipherMessage.decipher(messageObject);
                 }
-            } catch (Exception exception) {
-                exception.printStackTrace();
+            };
+            tasks.add(c);
+        }
+        ExecutorService exec = Executors.newCachedThreadPool();
+        try {
+            List<Future<String>> results = exec.invokeAll(tasks);
+            for (Future<String> fr : results) {
+                if (!fr.get().isEmpty()) {
+                    allies.add(fr.get());
+                    output = output.concat(" " + fr.get());
+                }
             }
+        }
+        finally {
+            exec.shutdown();
         }
         // If allegiance counter less than 3; set output to NONE
         output = (allies.size() < minAlliesRequired) ? "NONE" : "SPACE" + output;
         return output;
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
+//        long start = System.nanoTime();
         String filePath = args[0];
         System.out.println(driver(filePath));
+//        long end = System.nanoTime();
+//        long execution = end - start;
+//        System.out.println("Execution time: " + execution + " nanoseconds");
     }
 
 }
