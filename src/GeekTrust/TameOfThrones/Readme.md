@@ -8,7 +8,7 @@ Each kingdom has an animal emblem and Shan needs to send a message with the anim
 
 Challenge is to have King Shan send secret message to each kingdom and win them over.
 
-Problem source: `GeekTrust.in` [Golden Crown/Tame of Thrones](https://github.com/ashu20071/learn/blob/main/src/GeekTrust/TameOfThrones/Geektrust_in_tameofthrones_java.pdf)
+Problem source: `GeekTrust.in` [Golden Crown/Tame of Thrones](https://www.geektrust.in/coding-problem/backend/tame-of-thrones)
 
 Solution Description
 ---
