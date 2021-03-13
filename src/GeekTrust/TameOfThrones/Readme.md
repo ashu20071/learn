@@ -12,21 +12,22 @@ Problem source: `GeekTrust.in` [Golden Crown/Tame of Thrones](https://www.geektr
 
 Solution Description
 ---
-Enum `KingdomSymbols` holds the animal emblems which is instantiated and retrieved on demand.
+Interface `KingdomService` holds the core service of deciphering secret message with that kingdom's attributes like `cipher key` which is implemented by kingdom classes.
 
-`Decipher` method in `DecipherMessage` class is used to decode the secret message sent by King Shan to other kingdoms and retrieve their responses.
+Abstract class `Kingdom` defines basic attributes for a kingdom which has to be extended by every kingdom's sub class and implement them accordingly. 
 
-Parallel processing implemented using `ExecutorService` and cached thread pool. Assigning tasks for each message and implementing the decipher method in parallel. 
+`Controller` is the driver class which holds the core implementation methods like `validateMessage` and `buildOutput`. 
 
-Allied kingdoms stored in HashSet for future retrieval and final output appended in `output` string.
+`KingdomLookup` holds the instances which is called by the controller to set the service type according to the kingdom passed.
 
-`Exceptions` for incorrect or invalid input is handled by throwing appropriate exceptions.
+`DecipherMessage` class holds method which is used to decode the secret message sent by a kingdom to other kingdoms and retrieve their responses.
 
-Test Cases written for positive and negative response and also for invalid input in `GeekTrustTest` class. 
-Provide test values in `decipherTest` method in test class to test different values.
+Allied kingdoms stored in unique `ArrayList` of kingdom sending the secret message to build final output.
+
+Test Cases written for positive and negative response and for invalid input in `GeekTrustTest` class. 
 
 How to run
 ---
 Run `main` method in `Geektrust` class.
 Pass absolute path to `input` text file as argument containing kingdom name and secret message.
-Refer included `guide` for input examples.
+Refer `guide` from problem source for input examples.

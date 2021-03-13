@@ -25,6 +25,7 @@ public class Person {
     private Person spouse;
     private final List<Person> children;
 
+
     public Person(String name, Person mother, Gender gender) {
         this.name = name;
         this.mother = mother;
