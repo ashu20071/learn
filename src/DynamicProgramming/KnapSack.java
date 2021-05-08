@@ -1,4 +1,4 @@
-package RandomProblems;
+package DynamicProgramming;
 
 public class KnapSack {
     // Dynamic approach using tabulation

@@ -1,8 +1,8 @@
-package RandomProblems;
+package DynamicProgramming;
 
 import java.util.Arrays;
 
-public class coinChange {
+public class CoinChange {
     static long count(int[] S, int m, int n) {
         /* first solution using recursion (overlapping sub-problems)
         //if n is 0, only 1 solution; take no coins
