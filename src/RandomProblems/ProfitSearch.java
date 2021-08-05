@@ -3,18 +3,18 @@ package RandomProblems;
 import java.util.*;
 
 class ProfitSearch {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int p = sc.nextInt();
 
-        int rank[] = new int[n];
+        int[] rank = new int[n];
 
         for (int i = 0; i < n; i++) {
             rank[i] = sc.nextInt();
         }
 
-        int res = profitSearch(n, p, rank);
+        int res = profitSearch(p, rank);
 
         System.out.println(res);
     }
@@ -33,9 +33,9 @@ class ProfitSearch {
         return maxPizzas;
     }
 
-    static int profitSearch(int n, int p, int rank[]) {
+    static int profitSearch(int p, int[] rank) {
         int start = 1, end = min(rank) * p * p;
-        int mid = 0;
+        int mid;
         while (start <= end) {
             mid = (start + end) / 2;
             if (maxPossiblePizzas(mid, rank) >= p)
