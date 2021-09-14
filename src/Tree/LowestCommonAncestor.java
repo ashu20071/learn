@@ -1,7 +1,24 @@
 package Tree;
 
 public class LowestCommonAncestor {
-    TreeNode answer;
+    public TreeNode commonAncestor(TreeNode root, TreeNode p , TreeNode q) {
+        if (root == null)
+            return null;
+        if (root == p || root == q)
+            return root;
+
+        TreeNode left = commonAncestor(root.left, p, q);
+        TreeNode right = commonAncestor(root.right, p, q);
+
+        if (left != null && right != null)
+            return root;
+        else if (left != null)
+            return left;
+        else
+            return right;
+    }
+
+    /*TreeNode answer;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (exists(p.left, q.data) || exists(p.right, q.data))
             return p;
@@ -30,7 +47,7 @@ public class LowestCommonAncestor {
         if (root.data == value)
             return true;
         return exists(root.left, value) || exists(root.right, value);
-    }
+    }*/
 
     public static void main(String[] args) {
         BuildTree tree = new BuildTree();
@@ -38,7 +55,7 @@ public class LowestCommonAncestor {
         LowestCommonAncestor lca = new LowestCommonAncestor();
         TreeNode p = root.left;
         TreeNode q = root.left.right.right;
-        TreeNode lowest = lca.lowestCommonAncestor(root, p, q);
+        TreeNode lowest = lca.commonAncestor(root, p, q);
         System.out.println(lowest.data);
     }
 }
