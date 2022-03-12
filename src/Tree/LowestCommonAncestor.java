@@ -51,7 +51,7 @@ public class LowestCommonAncestor {
 
     public static void main(String[] args) {
         BuildTree tree = new BuildTree();
-        TreeNode root = tree.build("3 5 1 6 2 0 8 N N 7 4");
+        TreeNode root = tree.build("3,5,1,6,2,0,8,null,null,7,4");
         LowestCommonAncestor lca = new LowestCommonAncestor();
         TreeNode p = root.left;
         TreeNode q = root.left.right.right;
